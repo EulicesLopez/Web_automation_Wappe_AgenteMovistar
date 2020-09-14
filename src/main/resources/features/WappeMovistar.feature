@@ -12,5 +12,4 @@ Feature: Flujo Nuevo RRAA Movistar Wappe
     Examples:
       | caso_de_prueba |
       | 1              |
-
-  Web_automation_Wappe_AgenteMovistar
+    
