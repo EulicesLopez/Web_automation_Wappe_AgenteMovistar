@@ -11,4 +11,4 @@ Feature: Flujo Nuevo RRAA Movistar Wappe
     And Verifica la creacion del nuevo RRAA
     Examples:
       | login | caso_de_prueba |
-      | 1     | 1              |
+      |    1  | 1             |

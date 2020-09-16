@@ -93,7 +93,7 @@ public class LoginPageObject extends BaseClass {
 
     }
 
-
+    /*------------------------------------------------------------------------------------------------------*/
     public static void selecionarTipoDocumento(String casoPrueba) throws Throwable {
         try {
 
@@ -133,7 +133,7 @@ public class LoginPageObject extends BaseClass {
         }
     }
 
-
+    /*------------------------------------------------------------------------------------------------------*/
     public static void cargarWeb() throws Throwable {
         try {
             cargarBrowser(driver, "https://wappe.movistar.com.pe/#/agente");
@@ -148,5 +148,5 @@ public class LoginPageObject extends BaseClass {
         }
     }
 
-
+    /*------------------------------------------------------------------------------------------------------*/
 }
