@@ -55,7 +55,7 @@ public class LoginPageObject extends BaseClass {
             generateWord.sendText("Se inició correctamente la página del Agente");
             generateWord.addImageToWord(driver);
         } catch (Exception e) {
-            ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 5, "FAIL");
+            //ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 5, "FAIL");
             ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
             generateWord.sendText("Tiempo de espera ha excedido");
             generateWord.addImageToWord(driver);
@@ -67,11 +67,9 @@ public class LoginPageObject extends BaseClass {
     public static void ingresoDatosLogin(String casoDePrueba) throws Throwable {
 
         try {
-
             int valores = Integer.parseInt(casoDePrueba) - 1;
             String documentoData = getData().get(valores).get(COLUMNA_DOCUMENTO);
             String passwordData = getData().get(valores).get(COLUMNA_PASSWORD);
-
             selecionarTipoDocumento(casoDePrueba);
 
             sendKeyValue(driver, "id", INPUT_DOC, documentoData);
@@ -79,12 +77,12 @@ public class LoginPageObject extends BaseClass {
 
             click(driver, "xpath", BTN_ACEPTAR);
 
-            ExtentReportUtil.INSTANCE.stepPass(driver, "Se Ingresa los datos de login: Documento:" + documentoData + "Contraseña: " + passwordData);
-            generateWord.sendText("Se Ingresa los datos de login: Documento:" + documentoData + "Contraseña: " + passwordData);
+            ExtentReportUtil.INSTANCE.stepPass(driver, "Se Ingresa los datos de login: Documento: " + documentoData + " Contraseña: " + passwordData);
+            generateWord.sendText("Se Ingresa los datos de login: Documento: " + documentoData + " Contraseña: " + passwordData);
             generateWord.addImageToWord(driver);
             sleep2(7);
         } catch (Exception e) {
-            ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 5, "FAIL");
+            //ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 5, "FAIL");
             ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
             generateWord.sendText("Tiempo de espera ha excedido");
             generateWord.addImageToWord(driver);
