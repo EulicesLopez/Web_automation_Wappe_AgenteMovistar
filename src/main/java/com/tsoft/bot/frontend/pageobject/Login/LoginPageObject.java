@@ -27,11 +27,13 @@ public class LoginPageObject extends BaseClass {
     private static final String COLUMNA_PASSWORD = "PASSWORD";
 // selenium
 
-
+    public static String BTN_TODAS_EMPRESAS = "//span[@class='border-right']";
     public static String SELECT_TIPO_DOCUMENTO = "//div[@class='mat-select-value']";
     public static String TIPO_DOC_PASAPORTE = "//span[contains(text(),'Pasaporte')]";
     public static String TIPO_CE = "//span[contains(text(),'Carné Extranjeria')]";
-    public static String TIPO_OTROS = " //span[@class='mat-option-text'][contains(text(),'Otros')]";
+    public static String TIPO_OTROS = "//span[@class='mat-option-text'][contains(text(),'Otros')]";
+    public static String ETIQUETA_TIPO_USUARIO = "//app-root/app-main/header/app-header/nav/ul/li/ul[2]/li[1]/small";
+    public static String ETIQUETA_NOMBRE_USUARIO = "//app-root/app-main/header/app-header/nav/ul/li/ul[2]/li[1]/p";
 
     public static String INPUT_DOC = "mat-input-0";
     public static String INPUT_PASS = "mat-input-1";
@@ -74,9 +76,7 @@ public class LoginPageObject extends BaseClass {
 
             sendKeyValue(driver, "id", INPUT_DOC, documentoData);
             sendKeyValue(driver, "id", INPUT_PASS, passwordData);
-
             click(driver, "xpath", BTN_ACEPTAR);
-
             ExtentReportUtil.INSTANCE.stepPass(driver, "Se Ingresa los datos de login: Documento: " + documentoData + " Contraseña: " + passwordData);
             generateWord.sendText("Se Ingresa los datos de login: Documento: " + documentoData + " Contraseña: " + passwordData);
             generateWord.addImageToWord(driver);
@@ -130,6 +130,28 @@ public class LoginPageObject extends BaseClass {
             throw e;
         }
     }
+
+
+
+    public static void verificarAccesoLoginAgente() throws Throwable {
+        try {
+
+            String etiquetaTipoUsuario= driver.findElement(By.xpath(ETIQUETA_TIPO_USUARIO)).getText() ;
+            String etiquetaNombreUsuario= driver.findElement(By.xpath(ETIQUETA_NOMBRE_USUARIO)).getText() ;
+            click(driver, "xpath", BTN_TODAS_EMPRESAS);
+            ExtentReportUtil.INSTANCE.stepPass(driver, "Se verifica acceso Correcto Login Agente: "+etiquetaNombreUsuario+" - GA/Tipo: "+etiquetaTipoUsuario);
+            generateWord.sendText("Se verifica acceso Correcto Login Agente: "+etiquetaNombreUsuario+" - GA/Tipo: "+etiquetaTipoUsuario);
+            generateWord.addImageToWord(driver);
+        } catch (Exception e) {
+            ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
+            generateWord.sendText("Tiempo de espera ha excedido");
+            generateWord.addImageToWord(driver);
+            throw e;
+        }
+
+    }
+
+
 
     /*------------------------------------------------------------------------------------------------------*/
     public static void cargarWeb() throws Throwable {

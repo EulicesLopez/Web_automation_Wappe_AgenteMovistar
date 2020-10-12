@@ -1,7 +1,8 @@
 package com.tsoft.bot.frontend.steps.Movistar;
 
+import com.tsoft.bot.frontend.pageobject.Empresa.CrearEmpresaPageObject;
 import com.tsoft.bot.frontend.pageobject.Empresa.EmpresaPageObject;
-import com.tsoft.bot.frontend.pageobject.Empresa.UsuarioRRAAPageObject;
+import com.tsoft.bot.frontend.pageobject.Empresa.Usuarios.UsuarioRRAAPageObject;
 import com.tsoft.bot.frontend.pageobject.Empresa.Usuarios.EditarUsuarioRRAAPageObject;
 import com.tsoft.bot.frontend.pageobject.Empresa.Usuarios.EliminarUsuarioRRAAPageObject;
 import cucumber.api.PendingException;
@@ -13,6 +14,7 @@ public class EmpresaSteps extends EmpresaPageObject {
     UsuarioRRAAPageObject usuarioRRAAPageObject = new UsuarioRRAAPageObject();
     EliminarUsuarioRRAAPageObject eliminarUsuarioRRAA = new EliminarUsuarioRRAAPageObject();
     EditarUsuarioRRAAPageObject editarUsuarioRRAA = new EditarUsuarioRRAAPageObject();
+    CrearEmpresaPageObject crearEmpresa = new CrearEmpresaPageObject();
 
     /*------------------------------------------------------------------------------------------------------*/
     @And("^Selecciona una empresa \"([^\"]*)\" y opcion añadir RRAA$")
@@ -72,19 +74,31 @@ public class EmpresaSteps extends EmpresaPageObject {
     }
 
     /*------------------------------------------------------------------------------------------------------*/
-    @Then("^Usuario ingresa los datos a editar \"([^\"]*)\"$")
+    @And("^Usuario ingresa los datos a editar \"([^\"]*)\"$")
     public void usuarioIngresaLosDatosAEditar(String nuevosDatos) throws Throwable {
         editarUsuarioRRAA.ingresarDatos(nuevosDatos);
     }
 
     /*------------------------------------------------------------------------------------------------------*/
-    @Then("^Usuario da clic en boton Actualizar y valida registro editado$")
-    public void usuarioDaClicEnBotonActualizarYValidaRegistroEditado() throws Throwable {
+
+
+    @Then("^Usuario da clic en boton Actualizar y valida registro editado \"([^\"]*)\"$")
+    public void usuarioDaClicEnBotonActualizarYValidaRegistroEditado(String numDocumento) throws Throwable {
         editarUsuarioRRAA.seleccionarBotonActualizaryConfirmar();
+        editarUsuarioRRAA.validarEdicionRRAA(numDocumento);
     }
 
-
+    /*----------------------------------Crear empresa--------------------------------------------*/
+    @And("^Usuario selecciona boton crear empresa y ingresa datos solicitados \"([^\"]*)\"$")
+    public void usuarioSeleccionaBotonCrearEmpresaYIngresaDatosSolicitados(String datosPrueba) throws Throwable {
+        crearEmpresa.ingresoDatosCreacionEmpresa(datosPrueba);
+    }
     /*------------------------------------------------------------------------------------------------------*/
+
+    @Then("^Usuario da clic en el boton Crear y se valida empresa creada$")
+    public void usuarioDaClicEnElBotonCrearYSeValidaEmpresaCreada() {
+
+    }
 
 
 }

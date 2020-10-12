@@ -1,4 +1,4 @@
-package com.tsoft.bot.frontend.pageobject.Empresa;
+package com.tsoft.bot.frontend.pageobject.Empresa.Usuarios;
 
 
 import com.tsoft.bot.frontend.baseClass.web.BaseClass;

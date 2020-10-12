@@ -18,7 +18,7 @@ public class BaseClassSikuli {
     static WebDriver driver;
     static Screen screen = new Screen();
 
-    public static void screenshotSikuli(String nameCapture) {
+    public  void screenshotSikuli(String nameCapture) {
         ScreenImage imagen = screen.capture();
         System.out.println("path: " + imagen.getFile());
         try {

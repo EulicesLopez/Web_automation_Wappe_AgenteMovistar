@@ -13,7 +13,7 @@ import java.util.List;
 
 public class HomePrincipalPageObject extends BaseClass {
 
-    public static WebDriver driver;
+    public  WebDriver driver;
     static GenerateWord generateWord = new GenerateWord();
 
     private static final String EXCEL_WEB = "excel/DATA_WAPPE_MOVISTAR.xlsx";
@@ -25,6 +25,7 @@ public class HomePrincipalPageObject extends BaseClass {
 
     //Menu principal
     public static final String MENU_EMPRESAS ="//a[@class='nav-link'][contains(text(),'Empresa')]";
+    public static final String MENU_REPORTES ="//a[@class='nav-link'][contains(text(),'Reportes')]";
 
     public HomePrincipalPageObject() {
         this.driver = Hook.getDriver();
@@ -34,14 +35,14 @@ public class HomePrincipalPageObject extends BaseClass {
         return ExcelReader.data(EXCEL_WEB, EXCEL_SHEET);
     }
 
-    public static void seleccionarMenuEmpresas() throws Throwable {
+    public  void seleccionarMenuEmpresas() throws Throwable {
         try {
             click(driver, "xpath", MENU_EMPRESAS);
             ExtentReportUtil.INSTANCE.stepPass(driver, "Se selecciono Opcion menu Empresas");
             generateWord.sendText("Se selecciono Opcion menu Empresas");
             generateWord.addImageToWord(driver);
         } catch (Exception e) {
-            ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 6, "FAIL");
+            //ExcelReader.writeCellValue(EXCEL_WEB, EXCEL_SHEET, 1, 6, "FAIL");
             ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
             generateWord.sendText("Tiempo de espera ha excedido");
             generateWord.addImageToWord(driver);
@@ -50,7 +51,20 @@ public class HomePrincipalPageObject extends BaseClass {
 
     }
 
+    public  void seleccionarMenuReportes() throws Throwable {
+        try {
+            click(driver, "xpath", MENU_REPORTES);
+            ExtentReportUtil.INSTANCE.stepPass(driver, "Se seleccionó opción Menu Principal: Reportes");
+            generateWord.sendText("Se seleccionó opción Menu Principal: Reportes");
+            generateWord.addImageToWord(driver);
+        } catch (Exception e) {
+            ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
+            generateWord.sendText("Tiempo de espera ha excedido");
+            generateWord.addImageToWord(driver);
+            throw e;
+        }
 
+    }
 
 
 

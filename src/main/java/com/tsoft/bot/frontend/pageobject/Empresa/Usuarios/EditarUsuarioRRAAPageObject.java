@@ -158,7 +158,6 @@ public class EditarUsuarioRRAAPageObject extends BaseClass {
         try {
             click(driver, "xpath", BTN_ACTUALIZAR);
             click(driver, "xpath", BTN_CONFIRMAR_FINAL);
-
             ExtentReportUtil.INSTANCE.stepPass(driver, "se dio clic en el boton Actualizar ");
             generateWord.sendText("se dio clic en el boton Actualizar");
             generateWord.addImageToWord(driver);
@@ -171,6 +170,32 @@ public class EditarUsuarioRRAAPageObject extends BaseClass {
         }
 
     }
+
+
+
+    public void validarEdicionRRAA(String casoDePrueba) throws Throwable {
+
+        try {
+            int valores = Integer.parseInt(casoDePrueba) - 1;
+            String documentoData = getData6().get(valores).get(COLUMNA_NUM_DOCUMENTO);
+
+            sendKeyValue(driver, "xpath", INPUT_BUSCAR_PERSONA, documentoData);
+            sleep2(7);
+            ExtentReportUtil.INSTANCE.stepPass(driver, "Se Buscó el usuario con DNI: " + documentoData+ " se verifica datos Editados");
+            generateWord.sendText("Se Buscó el usuario con DNI: " + documentoData + " se verifica datos Editados");
+            generateWord.addImageToWord(driver);
+
+
+        } catch (Exception e) {
+            ExtentReportUtil.INSTANCE.stepFail(driver, "Fallo el caso de prueba : " + e.getMessage());
+            generateWord.sendText("Tiempo de espera ha excedido");
+            generateWord.addImageToWord(driver);
+            throw e;
+        }
+
+    }
+
+
 
     /*------------------------------------------------------------------------------------------------------*/
     public void clickEditar() throws InterruptedException {
